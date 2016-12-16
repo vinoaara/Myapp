@@ -4,31 +4,8 @@ export default class JumboComponent extends React.Component{
 constructor()
   {
     super();
-
-    this.saveItem=this.saveItem.bind(this);
-
-  }
-  saveItem(){
-  var r=this.props.title;
-     $.ajax({
-     url:  "http://localhost:8090/news/insert",
-     type: "POST",
-     data:this.props.data,
-     
-     success : function(msg){
-     /*msg represents JSON data of news headlines sent back by external API*/
-    
-    console.log("Inserted data")
-     }.bind(this),
-     error: function(err){
-     console.log(err)
-     }.bind(this)
- });
 }
-  
-
-
-  render()
+render()
    {
       return(
        <section className="container">
@@ -45,8 +22,8 @@ constructor()
                     
                     <p>{this.props.data.description}<a href={this.props.data.url} target="_blank">read more...</a></p>
 
-                  <button type="button" className="btn btn-primary btn-lg" onClick={this.saveItem.bind(this)}>save</button> &nbsp;&nbsp;&nbsp;&nbsp;
-                   <button type="button" className="btn btn-info btn-lg">comment</button> 
+                  <button type="button" className="btn btn-primary btn-lg">update</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                   <button type="button" className="btn btn-info btn-lg">delete</button> 
                    </div>
                   </div>
                 </section>

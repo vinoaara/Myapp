@@ -1,51 +1,36 @@
 import 'file?name=[name].[ext]!../index.html';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchComponent from './components/searchComponent';
-import IntermediateComponent from './components/IntermediateComponent';
+var {browserHistory,hashHistory , Route, Router, IndexRoute}
+  = require('react-router');
 
+import AboutComponent from './components/AboutComponent.jsx';
+import Home from './components/Home.jsx';
+import ContactComponent from './components/ContactComponent.jsx';
+import NavComponent from './components/navComponent.jsx';
+import FavouriteComponent from './components/FavouriteComponent.jsx';
 
 class MainComponent extends React.Component{
-constructor(){
-super();
-this.state={newsArray:[]};
-
-this.fetchNewsFromExternalAPI=this.fetchNewsFromExternalAPI.bind(this);
-
-
-}
-
-fetchNewsFromExternalAPI(msg) {
-    $.ajax({
-     url:  "https://newsapi.org/v1/articles?source="+msg+"&sortBy=top&apiKey=214ede0f03b643889b35f9745575e67a",
-     type: "GET",
-     dataType: 'JSON',
-    
-     success : function(msg){
-     /*msg represents JSON data of news headlines sent back by external API*/
-    
-    this.setState({newsArray : msg.articles});
-       
-
-     }.bind(this),
-     error: function(err){
-     }.bind(this)
- });
-}
 
 render(){
-	
-return(
+
+return (
 <div>
-<SearchComponent mysearch={ this.fetchNewsFromExternalAPI.bind(this)} />
-<IntermediateComponent newsRef={this.state.newsArray} />
-
-
-
+<NavComponent/>
+  <br/><br/><br/><br/>
+    {this.props.children}
 </div>
 )
 }
 }
 ReactDOM.render(
-<MainComponent/>,document.getElementById('content')
-);
+<Router history={browserHistory}>
+             <Route path="/" component={MainComponent} >
+             <IndexRoute path="/Home" component={Home}/>
+             <Route path="/about" component={AboutComponent}/>
+             <Route path="/favourites" component={FavouriteComponent}/>
+             <Route path="/contact" component={ContactComponent}/>
+             </Route>
+
+</Router>,document.getElementById('content'));
