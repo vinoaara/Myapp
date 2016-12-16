@@ -28,6 +28,7 @@ ReactDOM.render(
 <Router history={browserHistory}>
              <Route path="/" component={MainComponent} >
              <IndexRoute path="/Home" component={Home}/>
+             <Route path="/Home" component={Home}/>
              <Route path="/about" component={AboutComponent}/>
              <Route path="/favourites" component={FavouriteComponent}/>
              <Route path="/contact" component={ContactComponent}/>

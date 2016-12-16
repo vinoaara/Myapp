@@ -9,7 +9,7 @@ render(){
           <div className="container-fluid">
 
        <ul className="nav navbar-nav">
-      <li className="active"><Link to="/Home">Home</Link></li>
+      <li><Link to="/Home">Home</Link></li>
       <li><Link to="/favourites">view favourites</Link></li>
       <li><Link to="/about">Aboutus</Link></li>
       <li><Link to="/contact">Contactus</Link></li>

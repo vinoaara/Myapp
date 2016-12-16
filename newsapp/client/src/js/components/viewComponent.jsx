@@ -4,6 +4,20 @@ export default class JumboComponent extends React.Component{
 constructor()
   {
     super();
+    this.deleteItem=this.deleteItem.bind(this);
+}
+deleteItem(){
+       $.ajax({
+     url:"http://localhost:8090/news/del",
+     type: "DELETE",
+     data:this.props.data,
+      success : function(msg){
+      this.props.delNews(this.props.data);
+     }.bind(this),
+     error: function(err){
+     console.log(err)
+     }.bind(this)
+ });
 }
 render()
    {
@@ -23,7 +37,7 @@ render()
                     <p>{this.props.data.description}<a href={this.props.data.url} target="_blank">read more...</a></p>
 
                   <button type="button" className="btn btn-primary btn-lg">update</button> &nbsp;&nbsp;&nbsp;&nbsp;
-                   <button type="button" className="btn btn-info btn-lg">delete</button> 
+                   <button type="button" className="btn btn-info btn-lg" onClick={this.deleteItem.bind(this)}>delete</button> 
                    </div>
                   </div>
                 </section>
