@@ -15,13 +15,15 @@ searchItem(){
 }
 render(){
 	return(
-	
-			<div className="navbar-form">
+	      <div className="container col-12"> 
+	      
+			<div className="input-group" margin="3px" >
 					
-		<input type="text" className="form-control" placeholder="Search this site..." id="searchId"/>
-		
-					<button type="submit" onClick={this.searchItem.bind(this)} className="btn btn-default"><span className="glyphicon glyphicon-search"></span></button>
+		<input type="text" className="form-control input-lg" placeholder="Search this site..." id="searchId" width="50%" height="20%" />
+		              <span className="input-group-btn">
+					<button type="submit" onClick={this.searchItem.bind(this)} className="btn btn-success btn-lg">search <span className="glyphicon glyphicon-search"></span></button></span>
 									
+		</div>
 		</div>
 		
 		)

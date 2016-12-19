@@ -36,8 +36,8 @@ render()
                     
                     <p>{this.props.data.description}<a href={this.props.data.url} target="_blank">read more...</a></p>
 
-                  <button type="button" className="btn btn-primary btn-lg">update</button> &nbsp;&nbsp;&nbsp;&nbsp;
-                   <button type="button" className="btn btn-info btn-lg" onClick={this.deleteItem.bind(this)}>delete</button> 
+                  <button type="button" className="btn btn-warning btn-lg">update</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                   <button type="button" className="btn btn-danger btn-lg" onClick={this.deleteItem.bind(this)}>delete</button> 
                    </div>
                   </div>
                 </section>

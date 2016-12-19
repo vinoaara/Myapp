@@ -40,7 +40,6 @@ deleteNews(content){
  });
   if(index!==-1){
    myData.splice(index,1);
-   console.log(myData);
    this.setState({newArray:myData});
  } 
 

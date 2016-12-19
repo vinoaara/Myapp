@@ -7,6 +7,7 @@ var newsschema=new schema({
 	url:String,
 	urlToImage:String,
 	publisedAt:String,
+	comments:String,
 	
  })
  module.exports=mongoose.model('newsapp',newsschema);

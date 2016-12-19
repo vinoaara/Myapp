@@ -18,6 +18,7 @@ router.post("/insert",function(req,res) {
     newsvar.url=req.body.url;
     newsvar.urlToImage=req.body.urlToImage;
     newsvar.publishedAt=req.body.publishedAt;
+    newsvar.comments=req.body.publishedAt;
     newsvar.save(function(err){
       if(err) {
         res.send(err);
