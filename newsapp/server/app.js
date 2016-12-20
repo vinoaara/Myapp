@@ -8,6 +8,11 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var news=require('./routes/news');
+var passport=require('passport');
+var LocalStrategy =require('passport-local').Strategy;
+var connectflash=require('connect-flash');
+
+
 
 
 var webpackDevMiddleware = require("webpack-dev-middleware");
@@ -59,6 +64,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/assets')));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(connectflash());
 
 app.use('/', index);
 app.use('/users', users);
@@ -80,6 +88,41 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+// passport.require
+
+passport.use(new LocalStrategy(
+function(username, password, done) {
+  User.findOne({ username: username }, function (err, user) {
+    if (err) { return done(err); }
+    if (!user) { return done(null, false); }
+    if (!user.verifyPassword(password)) { return done(null, false); }
+    return done(null, user);
+  });
+}
+));
+
+
+//passport Authenticate Requests
+
+app.post('/login',
+passport.authenticate('local', { failureRedirect: '/login' }),
+function(req, res) {
+  res.redirect('/');
+});
+
+
+//passport sessions
+
+passport.serializeUser(function(user, done) {
+done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+User.findById(id, function (err, user) {
+  done(err, user);
+});
 });
 
 module.exports = app;

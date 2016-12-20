@@ -4,14 +4,16 @@ import NavComponent from './navComponent';
 export default class SearchComponent extends React.Component{
 constructor(){
 super();
-
+this.state={mysearch:""};
 this.searchItem=this.searchItem.bind(this);
+}
+searchInput(x){
+	this.setState({mysearch: x.target.value})
 }
 
 searchItem(){
 	
-	var newsId=document.getElementById("searchId").value;
-	this.props.mysearch(newsId);
+		this.props.mysearch(this.state.mysearch);
 }
 render(){
 	return(
@@ -19,7 +21,7 @@ render(){
 	      
 			<div className="input-group" margin="3px" >
 					
-		<input type="text" className="form-control input-lg" placeholder="Search this site..." id="searchId" width="50%" height="20%" />
+		<input type="text" className="form-control input-lg" placeholder="Search this site..." onChange={this.searchInput.bind(this)} width="50%" height="20%" />
 		              <span className="input-group-btn">
 					<button type="submit" onClick={this.searchItem.bind(this)} className="btn btn-success btn-lg">search <span className="glyphicon glyphicon-search"></span></button></span>
 									

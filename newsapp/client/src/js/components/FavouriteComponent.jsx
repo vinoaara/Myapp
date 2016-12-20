@@ -10,10 +10,13 @@ this.state={newArray:[]};
 this.viewFavourites=this.viewFavourites.bind(this);
 
 this.deleteNews=this.deleteNews.bind(this);
+this.handleUpdate=this.handleUpdate.bind(this);
+
 
 
 }  
 viewFavourites() {
+
     $.ajax({
      url: "http://localhost:8090/news/viewall",
      type: "GET",
@@ -44,8 +47,19 @@ deleteNews(content){
  } 
 
 }
+handleUpdate(title,comments){
+ var myData=this.state.newArray;
+ var index=myData.findIndex(function(element){
+   return element.title===title;
+ });
+ if(index!==-1){
+   myData[index].comments=comments;
+   this.setState({newArray:myData});
+ }
+}
 
 componentDidMount(){
+
    this.viewFavourites();
 }
 
@@ -54,7 +68,7 @@ render(){
              var savedNews= this.state.newArray.map(function(news){
 
                 return(
-                <ViewFavourite data={news} delNews={this.deleteNews.bind(this)}/>
+                <ViewFavourite data={news} delNews={this.deleteNews.bind(this)} onupdate={this.handleUpdate.bind(this)}/>
                   
 )
 

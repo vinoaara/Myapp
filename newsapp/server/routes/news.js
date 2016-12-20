@@ -18,8 +18,8 @@ router.post("/insert",function(req,res) {
     newsvar.url=req.body.url;
     newsvar.urlToImage=req.body.urlToImage;
     newsvar.publishedAt=req.body.publishedAt;
-    newsvar.comments=req.body.publishedAt;
-    newsvar.save(function(err){
+
+        newsvar.save(function(err){
       if(err) {
         res.send(err);
       } 
@@ -58,9 +58,9 @@ router.put('/update', function(req, res){
    // console.log(req.body);
     if(req.body)
     {
-     request1=req.body.title;
-      request2=req.body.description;
-    newsmodels.update({title:request1},{$set:{description:request2}},function(err){
+   var  request1=req.body.title;
+     var request2=req.body.comments;
+    newsmodels.update({title:request1},{$set:{comments:request2}},function(err){
   
         if(err) {
           res.send(err);

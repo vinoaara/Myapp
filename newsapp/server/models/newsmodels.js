@@ -6,7 +6,7 @@ var newsschema=new schema({
 	description:String,
 	url:String,
 	urlToImage:String,
-	publisedAt:String,
+	publishedAt:String,
 	comments:String,
 	
  })

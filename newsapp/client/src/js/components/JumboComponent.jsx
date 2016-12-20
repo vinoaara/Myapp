@@ -31,25 +31,30 @@ constructor()
   render()
    {
       return(
-       <section className="container">
+                 
+                <div className="container">
+ <section className="jumbotron" style={{"margin-top":"10%"}}>
+ <div className="row">
+ <div className="col-sm-12">
+ <a href={this.props.data.url} target="_blank"><h2><strong> {this.props.data.title}</strong>-{this.props.data.author}</h2></a>
+ </div>
+<div className='col-sm-6'>
+     <center>  <img src={this.props.data.urlToImage}  width="100%" height="50%" /></center>
+     </div>
+     <div className='col-sm-6'>
+     <div className="well">
+       <left><br></br>
 
-                   <div className="jumbotron row">
-                    <div className="col-sm-12">
-                    <h2>{this.props.data.title}-{this.props.data.author}</h2>
-                    </div>
-                        <div className="col-sm-6">
-                        <img src={this.props.data.urlToImage} alt="no image" height="20%" width="100%"/>
-
-                      </div>
-                    <div className="col-sm-6">
-                    
-                    <p>{this.props.data.description}<a href={this.props.data.url} target="_blank">read more...</a></p>
-                    <textarea id="comment" rows="4" cols="60">enter your comments</textarea><br/>
+         <p><em>{this.props.data.description}</em></p>
+       <h4> <span className="glyphicon glyphicon-time"></span> {this.props.data.publishedAt}</h4>
+         </left>
+         </div>
+          <center><button type="button" className="btn btn-primary btn-lg" onClick={this.saveItem.bind(this)}>save</button></center>
                   
-                  <center><button type="button" className="btn btn-primary btn-lg" onClick={this.saveItem.bind(this)}>save</button> &nbsp;&nbsp;&nbsp;&nbsp;
-                   </div>
-                  </div>
-                </section>
+         </div>
+         </div>
+       </section>
+ </div>
           )
   }
 }

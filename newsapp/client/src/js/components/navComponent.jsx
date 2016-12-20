@@ -13,6 +13,10 @@ render(){
       <li><Link to="/favourites">view favourites</Link></li>
       <li><Link to="/about">Aboutus</Link></li>
       <li><Link to="/contact">Contactus</Link></li>
+      <li><Link to="/signup">Signup</Link></li>
+    
+        <li><Link to="/login">Login</Link></li>
+    
       
     </ul>
   </div>

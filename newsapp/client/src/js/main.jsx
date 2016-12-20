@@ -10,6 +10,11 @@ import Home from './components/Home.jsx';
 import ContactComponent from './components/ContactComponent.jsx';
 import NavComponent from './components/navComponent.jsx';
 import FavouriteComponent from './components/FavouriteComponent.jsx';
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx';
+
+
+
 
 class MainComponent extends React.Component{
 
@@ -25,13 +30,15 @@ return (
 }
 }
 ReactDOM.render(
-<Router history={browserHistory}>
+<Router history={hashHistory}>
              <Route path="/" component={MainComponent} >
              <IndexRoute path="/Home" component={Home}/>
              <Route path="/Home" component={Home}/>
              <Route path="/about" component={AboutComponent}/>
              <Route path="/favourites" component={FavouriteComponent}/>
              <Route path="/contact" component={ContactComponent}/>
+             <Route path="/signup" components={Signup}/>
+       <Route path="/login" components={Login}/>
              </Route>
 
 </Router>,document.getElementById('content'));
