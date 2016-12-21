@@ -30,9 +30,9 @@ return (
 }
 }
 ReactDOM.render(
-<Router history={hashHistory}>
+<Router history={browserHistory}>
              <Route path="/" component={MainComponent} >
-             <IndexRoute path="/Home" component={Home}/>
+             <IndexRoute component={Home}/>
              <Route path="/Home" component={Home}/>
              <Route path="/about" component={AboutComponent}/>
              <Route path="/favourites" component={FavouriteComponent}/>

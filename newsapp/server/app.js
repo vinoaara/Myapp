@@ -4,13 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var index = require('./routes/index');
-var users = require('./routes/users');
-var news=require('./routes/news');
 var passport=require('passport');
 var LocalStrategy =require('passport-local').Strategy;
 var connectflash=require('connect-flash');
+
+var index = require('./routes/index');
+var users = require('./routes/users');
+var news=require('./routes/news');  
+var User=require('./models/loginmodels');
 
 
 
@@ -27,7 +28,7 @@ var compiler = webpack(webpackConfig);
 
 app.use(webpackDevMiddleware(compiler, {
  publicPath: webpackConfig.output.publicPath,
-   stats: {colors: true}, // Same as `output.publicPath` in most cases.
+   stats: {colors: true}, 
    quiet: true,
    noInfo: true,
    host: '0.0.0.0',
@@ -64,6 +65,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/assets')));
+
+app.use(require('express-session')({ secret: 'accesskey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(connectflash());
@@ -97,21 +100,11 @@ function(username, password, done) {
   User.findOne({ username: username }, function (err, user) {
     if (err) { return done(err); }
     if (!user) { return done(null, false); }
-    if (!user.verifyPassword(password)) { return done(null, false); }
+   // if (!user.verifyPassword(password)) { return done(null, false); }
     return done(null, user);
   });
 }
 ));
-
-
-//passport Authenticate Requests
-
-app.post('/login',
-passport.authenticate('local', { failureRedirect: '/login' }),
-function(req, res) {
-  res.redirect('/');
-});
-
 
 //passport sessions
 

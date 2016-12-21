@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 /*localhost:8090/news/insert*/
-router.post("/insert",function(req,res) {
+router.post("/insert",isLoggedIn,function(req,res) {
  if(req.body) {
   var newsvar=new newsmodels();
     console.log("inside insert");
@@ -18,6 +18,8 @@ router.post("/insert",function(req,res) {
     newsvar.url=req.body.url;
     newsvar.urlToImage=req.body.urlToImage;
     newsvar.publishedAt=req.body.publishedAt;
+    newsvar.comments="No comments";
+
 
         newsvar.save(function(err){
       if(err) {
@@ -31,7 +33,7 @@ router.post("/insert",function(req,res) {
 });
 
 /*localhost:8090/news/del*/
-router.delete('/del', function(req, res) {
+router.delete('/del',isLoggedIn, function(req, res) {
   if(req.body){
     
       request=req.body.title;
@@ -53,7 +55,7 @@ router.delete('/del', function(req, res) {
 
 
 /*localhost:8090/news/update*/
-router.put('/update', function(req, res){
+router.put('/update',isLoggedIn, function(req, res){
 
    // console.log(req.body);
     if(req.body)
@@ -74,7 +76,7 @@ router.put('/update', function(req, res){
 
 
 /*localhost:8090/news/viewall*/
-router.get('/viewall', function(req, res) {
+router.get('/viewall',isLoggedIn, function(req, res) {
    newsmodels.find({},function(err,viewnews){
      if(err) {
        res.send(err);
@@ -91,7 +93,14 @@ router.get('/viewall', function(req, res) {
    });
  });
 
-
+function isLoggedIn (req, res, next) {
+ if(req.isAuthenticated()){
+ return next()
+ ;}
+ else {
+   res.json('not authenticated');
+ }
+ };
 
 
 

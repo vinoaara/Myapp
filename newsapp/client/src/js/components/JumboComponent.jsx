@@ -17,7 +17,7 @@ constructor()
      
      success : function(msg){
      /*msg represents JSON data of news headlines sent back by external API*/
-    
+    alert("News saved")
     console.log("Inserted data")
      }.bind(this),
      error: function(err){
@@ -33,7 +33,7 @@ constructor()
       return(
                  
                 <div className="container">
- <section className="jumbotron" style={{"margin-top":"10%"}}>
+                 <section className="jumbotron" style={{"margin-top":"10%"}}>
  <div className="row">
  <div className="col-sm-12">
  <a href={this.props.data.url} target="_blank"><h2><strong> {this.props.data.title}</strong>-{this.props.data.author}</h2></a>
@@ -49,7 +49,7 @@ constructor()
        <h4> <span className="glyphicon glyphicon-time"></span> {this.props.data.publishedAt}</h4>
          </left>
          </div>
-          <center><button type="button" className="btn btn-primary btn-lg" onClick={this.saveItem.bind(this)}>save</button></center>
+          <center><button type="button" className="btn btn-primary btn-lg" id="alertMe" onClick={this.saveItem.bind(this)}>save <span className="glyphicon glyphicon-save-file"></span></button></center>
                   
          </div>
          </div>

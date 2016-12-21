@@ -55,6 +55,7 @@ render()
    var myid2=this.props.data._id;
       return(
        <section className="container">
+       
 
                    <div className="jumbotron row" style={{"margin-top":"10%"}}>
                     <div className="col-sm-12">
@@ -79,7 +80,7 @@ render()
          </div>
         
                      
- <button type="button" className="btn btn-warning btn-lg" data-toggle="modal" data-target={myid}>Update</button>
+ <center><button type="button" className="btn btn-warning btn-lg" data-toggle="modal" data-target={myid}>Update <span className="glyphicon glyphicon-edit"></span></button>
 
 
  <div className="modal fade" id={myid2} role="dialog">
@@ -110,8 +111,9 @@ render()
    </div>
  </div>
                  &nbsp;&nbsp;&nbsp;&nbsp;
-                   <button type="button" className="btn btn-danger btn-lg" onClick={this.deleteItem.bind(this)}>delete</button>
-                   
+      
+                   <button type="button" className="btn btn-danger btn-lg" onClick={this.deleteItem.bind(this)}>Delete <span className="glyphicon glyphicon-trash"></span></button>
+                   </center>
                   </div>
                   </div>
                 </section>

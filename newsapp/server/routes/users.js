@@ -1,11 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var loginmodels=require('../models/loginmodels');
-
+var passport=require('passport');
+var LocalStrategy =require('passport-local').Strategy;
+var connectflash=require('connect-flash');
 
 	/* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
+});
+
+//passport Authenticate Requests
+
+
+router.post('/login',
+passport.authenticate('local', { failureRedirect: '/login' }),
+function(req, res) {
+  res.send('welcome to login');
 });
 
 /*localhost:8090/users/insert*/
