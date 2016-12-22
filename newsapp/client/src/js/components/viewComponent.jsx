@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {browserHistory} from 'react-router';
 export default class JumboComponent extends React.Component{
 constructor()
   {
@@ -27,7 +27,8 @@ updateClick(){
      data:myObj,
       success : function(){ 
        this.props.onupdate(myObj.title, myObj.comments);
-        window.location.reload();
+        alert("Comments updated");
+        browserHistory.push('/favourites');
      }.bind(this),
      error: function(err){
      console.log(err)

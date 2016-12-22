@@ -30,8 +30,8 @@ var userObj={
    data:userObj,
    success : function(msg)
    {
-        alert("Registration successful");
-          browserHistory.push('/home');
+        alert("Registration successful..! Click here to Login");
+          browserHistory.push('/login');
        }.bind(this),
    error: function(err){
      alert("error");

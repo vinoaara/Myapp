@@ -97,14 +97,21 @@ app.use(function(err, req, res, next) {
 
 passport.use(new LocalStrategy(
 function(username, password, done) {
-  User.findOne({ username: username }, function (err, user) {
-    if (err) { return done(err); }
-    if (!user) { return done(null, false); }
-   // if (!user.verifyPassword(password)) { return done(null, false); }
+  console.log("tyyyy");
+  process.nextTick(function () {
+  User.findOne({'username':username},
+  function(err, user) {
+    if (err) {console.log("err"); return done(err); }
+    if (!user) { console.log("user not");
+     return done(null, false); }
+    if (user.password != password) { console.log("password");
+    return done(null, false); }
+console.log("ssssss");
     return done(null, user);
   });
+  });
 }
-));
+))
 
 //passport sessions
 

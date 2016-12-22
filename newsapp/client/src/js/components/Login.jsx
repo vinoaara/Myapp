@@ -1,9 +1,5 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-var{Link}=require('react-router');
-
-
-
 export default class Login extends React.Component{
 constructor()
   {
@@ -44,6 +40,7 @@ var userObj={
    }.bind(this),
    error: function(err){
      alert("check the username and password");
+     browserHistory.push('/login');
   }.bind(this)
  });
 
@@ -89,7 +86,7 @@ render()
             <tr>
                 <td>
                    <center><button className="btn btn-success" onClick={this.authenticate.bind(this)}>Sign in</button>
-                   <button type="button" onClick={this.redirect.bind(this)} className="btn btn-link">Signup</button>
+                  <button type="button" onClick={this.redirect.bind(this)} className="btn btn-link">Sign up</button>
                    </center>
                 </td>
 
